@@ -3,7 +3,7 @@ import main from './src/main.js';
 
 (async () => {
   try {
-    const listTask = ['Get all info'];
+    const listTask = ['Get all info', 'Get download url'];
     const question = await inquirer.prompt([
       {
         name: 'task',
@@ -14,6 +14,6 @@ import main from './src/main.js';
     ]);
     await main(question.task);
   } catch (error) {
-    console.log(`error at index.js : ${error}`);
+    console.log(`${error}`);
   }
 })();

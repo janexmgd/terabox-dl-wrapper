@@ -1,4 +1,3 @@
-import axios from 'axios';
 import fetch from 'node-fetch';
 
 const getInfoRecursive = async (shortUrl, dir = '', root = 0, cookie) => {
@@ -68,7 +67,7 @@ const getAllInfo = async (url, pwd) => {
       create_time: e.server_ctime,
       children: e.isdir
         ? await getInfoRecursive(shortUrl, e.path, '0', cookie)
-        : undefined,
+        : null,
     }));
     const list = await Promise.all(listPromises);
     const final = {
@@ -79,6 +78,7 @@ const getAllInfo = async (url, pwd) => {
       timestamp: data.timestamp,
       list: list,
     };
+    console.log('\nsuccess get all info\n');
     return final;
   } catch (error) {
     console.log(`Error when getInfo : ${error}`);
